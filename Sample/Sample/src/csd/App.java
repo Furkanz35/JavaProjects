@@ -1,50 +1,29 @@
-
 package csd;
 
-class App {
-	public static void main(String [] args)
-	{		
-		System.out.println("The functions are not called yet...");
-		Function.firstfunction();
-		Function.secondfunction();
-		Foo.foofunction();
-		System.out.println("All functions were called");
-		
-	}
+
+class App{
+	
+  public static void main(String [] args) {
+	  
+	  java.util.Scanner kb = new java.util.Scanner(System.in);
+	  
+	  System.out.println("Please give an birthday:");
+	  int birthyear = Integer.parseInt(kb.nextLine());
+	  
+	  System.out.println("Which year's age :");
+	  int year = Integer.parseInt(kb.nextLine());
+	  
+	  int result = year - birthyear;
+	  
+	  System.out.printf("You will be %d age at % d year", result, year);
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+  }
+	
+	
 }
-
-
- class Function {
-	 
-	 public static void firstfunction() {
-		 
-		 System.out.println("First function was called..");
-		 
-	 }
-	 
-	 public static void secondfunction() {
-		 
-		 System.out.println("Second function was called");
-		 firstfunction();
-	 }
-	 
-	 
-	 
-	 
- }
-
- class Foo {
-	 
-	 public static void foofunction() {
-		 
-		 System.out.println("Foo function was called");
-	 }
- }
- 
- 
- 
- 
- 
- 
- 
- 
