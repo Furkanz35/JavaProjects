@@ -1,0 +1,49 @@
+//	Sınıf Çalışması: Parametresi ile aldığı en fazla 3(üç) basamaklı int türden bir sayının basamakları toplamına geri
+//	dönen digitsSum isimli metodu NumberUtil sınıfı içerisinde yazınız. Metot aldığı argümanın en fazla 3(üç) basamaklı 
+//	olup olmadığını kontrol etmeyecektir. Basamaklar toplamı pozitif olarak döndürülecekti
+
+
+
+package csd;
+
+class App{
+	
+	public static void main(String [] args) {
+		
+		
+		digitsSum_Test.checkDigitsSum();		
+	}
+	
+	
+}
+
+class digitsSum_Test{
+	
+	public static void checkDigitsSum() {
+		java.util.Scanner kb = new java.util.Scanner(System.in);
+		int val;
+		
+		System.out.print("Please given a value that has 3 digits maxiumum: ");
+		val = Integer.parseInt(kb.nextLine());
+		
+		
+		System.out.printf("Digits sum of %d = %d", val,  NumberUtil.digitsSum(val));
+	}
+	
+	
+}
+
+
+class NumberUtil {
+	
+	
+	public static int digitsSum(int val) {	
+		
+		return Math.abs((val/100) + ((val/10)%10) + (val%10));
+		
+	}
+	
+	
+}
+
+//Bu soru Oğuz Karan Hoca tarafından sorulmuştur
