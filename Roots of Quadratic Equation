@@ -1,0 +1,53 @@
+package csd;
+
+class App {	
+	public static void main(String [] args) {
+		
+		FindRoutesTest.run();
+		
+	}
+}
+
+class FindRoutesTest{
+	
+	public static void run() {
+		java.util.Scanner kb = new java.util.Scanner(System.in);
+		System.out.print("Please give 3 value to find routes:");
+		double par1 = Double.parseDouble(kb.nextLine());
+		double par2 = Double.parseDouble(kb.nextLine());
+		double par3 = Double.parseDouble(kb.nextLine());
+		FindRoutes.routes(par1, par2, par3, FindRoutes.getDelta(par1, par2, par3));
+	}
+	
+}
+
+class FindRoutes {
+	
+	public static double getDelta(double par1, double par2, double par3) {
+		
+		return  par2 * par2 - 4 * par1 * par2;		
+		
+	}
+	
+	public static void routes(double par1, double par2, double par3, double delta) {
+		
+		if (delta > 0) {
+			double root1 = (-par2 + Math.sqrt(delta))/ (2 * par1);
+			double root2 = (-par2 - Math.sqrt(delta))/ (2 * par1);
+			System.out.printf("Entered equation has 2 different routes route1 = %f, route2 = %f", root1, root2);
+			
+		}
+		
+		else if (delta == 0) {
+			
+			double root1 = -par2 / (2 * par1);
+			System.out.printf("Entered equation has one route route = %f", root1);
+			
+		}
+		
+		else 
+			System.out.print("The equeation has no routes");
+	}
+	
+	
+}
