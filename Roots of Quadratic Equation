@@ -25,7 +25,7 @@ class FindRoutes {
 	
 	public static double getDelta(double par1, double par2, double par3) {
 		
-		return  par2 * par2 - 4 * par1 * par2;		
+		return  par2 * par2 - 4 * par1 * par3;		
 		
 	}
 	
