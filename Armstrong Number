@@ -1,0 +1,45 @@
+package csd;
+
+class App {	
+	public static void main(String [] args)
+	{
+		for (int i = 0; i < 1000000; ++i) {
+			NumberUtil.run(i);
+		}
+	}
+}
+
+class NumberUtil {
+	public static void run(int value)
+	{	int reelval = value;
+		double  sum = 0;
+		int digitcount = findDigitCount(value);
+		
+		while((value / 10) != 0) {
+			
+			sum += Math.pow((value % 10),digitcount);
+			value /= 10;
+		}
+		
+		sum += Math.pow(value,digitcount); 
+		
+		if (sum == reelval)
+			System.out.printf("%d (%.1f) sayısı bir Armstong sayısıdır%n%n", reelval, sum);		
+	}
+	
+	public static int findDigitCount(int value) 
+	{
+		int count = 1;
+		
+		while ((value / 10) != 0) {
+			value /= 10;
+			++count;
+		}
+		return count;
+	}
+	
+}
+	
+	
+
+
