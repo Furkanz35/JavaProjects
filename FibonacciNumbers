@@ -1,0 +1,55 @@
+package csd;
+
+class App {	
+	public static void main(String [] args)
+	{
+		FibonacciNumberTest.run();
+	}
+}
+
+class FibonacciNumberTest {
+	public static void run() {
+		java.util.Scanner kb = new java.util.Scanner(System.in);
+		
+		for(;;) {
+			System.out.print("Bir sayı giriniz:");
+			int n = Integer.parseInt(kb.nextLine());
+			
+			if(n < 1)
+				break;
+			
+			System.out.printf("%d. Fibonacci Sayısı : %d%n", n, NumberUtil.fibonacciNumber(n));			
+		}
+	}
+}
+
+
+class NumberUtil {
+	public static int fibonacciNumber(int n)
+	{	
+		int fibonacciOld = 0;
+		int fibonacci = 1;
+		int temp = 0;
+		
+		
+		if (n == 1)
+			return fibonacciOld;
+		if (n == 2)
+			return 1;
+		if (n == 3)
+			return 1;
+		
+		for (; n >= 3; n--) {
+			
+			temp = fibonacci;
+			fibonacci = fibonacci + fibonacciOld;
+			fibonacciOld = temp;			
+		}		
+		
+		return fibonacci;
+	}
+}
+	
+	
+
+
