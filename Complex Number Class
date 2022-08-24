@@ -1,0 +1,145 @@
+package csd;
+
+class App {
+	
+	public static void main(String [] args) {
+		
+		Complex val1 = new Complex();
+		Complex val2 = new Complex(5,12);
+		Complex val3 = new Complex(6.21);
+		
+		val1.printnumber();
+		val2.printnumber();
+		val3.printnumber();
+		
+	}
+}
+
+
+class Complex {
+	
+	double real;
+	double imag;
+	
+	public Complex() 
+	{
+		
+	}
+	
+	public Complex(double realval, double imagval) 
+	{
+		real = realval;	
+		imag = imagval;		
+	}
+	
+	public Complex(double realval) 
+	{
+		real = realval;	
+		
+	}
+	
+	public void printnumber() 
+	{
+		System.out.printf("%.2f, %.2f --> |%.2f, %.2f| = %.2f %n", real, imag, real, imag, getnorm());
+	}
+	
+	public double getnorm() 
+	{
+		return Math.sqrt(real * real + imag * imag) ;
+	}
+	
+	// Four operations static methods
+	public static Complex add(double areal, double aimag, double breal, double bimag) 
+	{
+		
+		return new Complex(areal+breal, aimag+bimag);
+		
+	}
+	
+	public static Complex substraction(double areal, double aimag, double breal, double bimag) 
+	{
+		
+		return new Complex(areal-breal, aimag-bimag);
+		
+	}
+	
+	public static Complex multiply(double areal, double aimag, double breal, double bimag) 
+	{
+		
+		return new Complex((areal * breal) - (aimag * bimag), (areal * bimag) + (aimag * breal));		
+	}
+	
+	public static Complex division(double areal, double aimag, double breal, double bimag) 
+	{
+		return new Complex((((areal * breal) + (aimag * bimag)) / getConjugate(breal, bimag)),(((aimag * breal) - (areal * bimag))/ getConjugate(breal, bimag)));
+		
+	}
+	
+	//Sum
+
+	public Complex add(double areal, double aimag)
+	{
+		return add(real, areal, imag, aimag);
+	}
+	
+	
+	public Complex add(Complex val)
+	{
+		
+		return add(real, val.real, imag, val.imag);
+		
+	}
+	
+	
+	//subtract
+
+	public Complex subtraction(double areal, double aimag)
+	{
+		return substraction(real, imag, areal, aimag);
+	}
+	
+	public Complex subtraction(Complex val)
+	{
+		return substraction(real, val.real, imag, val.imag);
+	}
+	
+	public static Complex subtraction(double areal, double bimag, Complex val) {
+		return substraction(areal, val.real, bimag, val.real);
+	}
+	
+	//multiply	
+	
+	public Complex multiply(Complex val)
+	{
+		return multiply(real, imag, val.real, val.imag);
+	}
+	
+	public Complex multiply(double areal, double breal)
+	{
+		return multiply(real, imag, areal, breal);
+	}
+		
+	//division
+	
+	public Complex division(Complex val)
+	{
+		return division(real, imag, val.real, val.imag);
+	}
+	
+	public Complex division(double areal, double aimag)
+	{
+		return division(real, imag, areal, aimag);
+	}
+	
+	public static Complex division(double areal, double aimag, Complex val) 
+	{
+		return division(areal, aimag, val.real, val.imag);
+	}
+	
+	
+	public static double getConjugate(double areal, double aimag) 
+	{
+		return areal * areal + aimag * aimag;
+	}
+}
+
