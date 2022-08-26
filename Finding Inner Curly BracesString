@@ -1,0 +1,47 @@
+package csd;
+
+class App {	
+	public static void main(String [] args)
+	{	java.util.Scanner inp = new java.util.Scanner(System.in);
+		String str;
+	
+		while(true) {
+		System.out.println("Giriş yapınız:");
+		str = inp.nextLine();
+		if("çıkış".equals(str))
+			break;
+		System.out.println(StringUtil.getInnerStringCurlyBraces(str));
+		}
+	}
+}
+
+class StringUtil {
+	
+	public static boolean checkCurlyBraces(String str) 
+	{
+		
+		if(str.indexOf('{') != -1)
+			if(str.substring(str.indexOf('{')).indexOf('}') != -1) 
+				return true;
+		
+		return false;
+		
+	}
+	
+	public static String getInnerStringCurlyBraces(String str)
+	{
+		if(!checkCurlyBraces(str)) {
+			System.out.println("Yanlış bir giriş");
+			return "";
+		    }
+		
+		while(str.indexOf('{') != -1) {
+			str = str.substring(str.indexOf('{') + 1);
+		}		
+		
+		return str = str.substring(0, str.indexOf('}'));
+			
+	}
+	
+	
+}
