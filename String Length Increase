@@ -1,0 +1,75 @@
+package csd;
+
+class App {	
+	public static void main(String [] args)
+	{		
+		PadLeadingTrailingTest.run();				
+	}
+}
+
+class PadLeadingTrailingTest {
+	public static void run()
+	{
+		java.util.Scanner kb = new java.util.Scanner(System.in);
+		
+		for (;;) {
+			System.out.print("Bir yazı giriniz:");
+			String s = kb.nextLine();		
+			
+			if ("elma".equals(s))
+				break;
+			
+			System.out.print("Bir sayı giriniz:");
+			int newLen = Integer.parseInt(kb.nextLine());
+			
+			
+			System.out.printf("(%s)%n", StringUtil.padLeading(s, newLen, 'x'));			
+			System.out.printf("(%s)%n", StringUtil.padLeading(s, newLen));			
+			System.out.printf("(%s)%n", StringUtil.padTrailing(s, newLen, 'x'));			
+			System.out.printf("(%s)%n", StringUtil.padTrailing(s, newLen));
+		}
+		
+		System.out.println("Tekrar yapıyor musunuz?");
+	}
+}
+
+class StringUtil {
+	public static String padLeading(String s, int len, char ch) {
+		int slength = s.length();
+		if (s.length() >= len)
+			return s;
+		
+		for(; len - slength != 0; len--, s = ch + s);
+		return s;
+	}
+	
+	public static String padLeading(String s, int len) {
+		return padLeading(s, len, ' ');
+	}
+	
+	public static String padTrailing(String s, int len, char ch) {
+		int slength = s.length();
+		if (s.length() >= len)
+			return s;
+		for(; len - slength != 0; len--, s = s + ch);
+		return s;
+	}
+	
+	public static String padTrailing(String s, int len) {
+		return padTrailing(s, len, ' ');
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
