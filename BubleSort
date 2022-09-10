@@ -1,0 +1,108 @@
+package org.csystem.app;
+
+import java.util.Random;
+import java.util.Scanner;
+
+//import static org.csystem.util.array.ArrayUtil.*;
+import static org.csystem.util.numeric.NumberUtil.*;
+
+class App {
+    public static void main(String [] args)
+    {
+        BubleSortTest.run();
+
+    }
+}
+class BubleSortTest {
+    public static void run()
+    {
+        Scanner kb = new Scanner(System.in);
+        Random r = new Random();
+
+        for (;;) {
+            System.out.print("Dizinin eleman sayısını giriniz:");
+            int count1 = kb.nextInt();
+
+            if (count1 <= 0)
+                break;
+
+            int [] a = getRandomArray(r, count1, -99, 99);
+            print(a);
+            print(bubleSort(a, false));
+            print(bubleSort(a, true));
+
+        }
+
+
+
+    }
+    public static void swap(int[] arr, int i, int k)
+    {
+        int temp = arr[k];
+        arr[k] = arr[i];
+        arr[i] = temp;
+    }
+
+    private static int[] bubleSortAscending(int[] a)
+    {
+        for(int i = 0; i < a.length - 1; i++) {
+            for(int k = 0; k < a.length - i -1 ; ++k)
+                if(a[k] > a[k + 1])
+                    swap(a, k, k + 1);
+        }
+
+        return a;
+    }
+    private static int[] bubleSortDescending(int[] a)
+    {
+        for(int i = 0; i < a.length - 1; i++) {
+            for(int k = 0; k < a.length - i - 1; ++k)
+                if(a[k] < a[k + 1])
+                    swap(a, k, k + 1);
+        }
+
+        return a;
+    }
+    public static int[] bubleSort(int[] arr, boolean Descending)
+    {
+        if (Descending == false)
+            return bubleSortAscending(arr);
+
+        return bubleSortDescending(arr);
+
+    }
+
+    public static int[] bubleSort(int[] arr)
+    {
+        return  bubleSort(arr, false);
+    }
+    public static void print(int n, int [] a)
+    {
+        String fmt = String.format("%%0%dd ", n);
+
+        for (int val : a)
+            System.out.printf(fmt, val);
+
+        System.out.println();
+    }
+
+    public static void print(int [] a)
+    {
+        print(1, a);
+    }
+    public static void fillRandomArray (Random r, int [] a, int min, int max)
+    {
+        for (int i = 0; i < a.length; ++i) {
+            a[i] = r.nextInt(min, max + 1);
+        }
+    }
+
+    public static int [] getRandomArray(Random r, int count, int min, int max) //[min, max]
+    {
+        int [] a = new int[count];
+
+        fillRandomArray(r, a, min, max);
+
+        return a;
+    }
+}
