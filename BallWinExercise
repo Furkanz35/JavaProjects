@@ -1,0 +1,88 @@
+package org.csystem.app;
+import java.util.Random;
+import java.util.Scanner;
+
+import static java.util.Arrays.sort;
+
+class App {
+    public static void main(String [] args)
+    {
+        getBallGameTest.run();
+    }
+}
+
+class getBallGameTest {
+    public static void run()
+    {
+        int [] numbers = new int[0];
+
+        Scanner kb = new Scanner(System.in);
+
+
+        for (;;) {
+            System.out.println("Oyunu kaç kez simüle etmek istiyorsunuz:");
+            int gameCount = Integer.parseInt(kb.nextLine());
+            if(gameCount == 0)
+                break;
+            int winCount = 0;
+
+            for(int i = 0; i < gameCount; ++i ) {
+                if(getBallGame.getBallGameSimulation())
+                    ++winCount;
+
+            }
+            System.out.printf("Oyuncunun kazanma olasılığı %f%n", (float)winCount / gameCount);
+
+        }
+
+        System.out.println("Simülasyon uygulamasından çıkılıyor...");
+    }
+}
+
+class getBallGame {
+
+    public static boolean getBallGameSimulation() {
+        int[] primeValues = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157,
+                163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331,};
+        boolean[] flag = new boolean[100];
+
+        int[] pulledBalls = pullBalls(flag);
+        if (sumBalls(pulledBalls) < 150)
+            return true;
+        for (int i = 0; i < primeValues.length; ++i) {
+            if (sumBalls(pulledBalls) == primeValues[i])
+                return true;
+        }
+
+
+        sort(pulledBalls);
+
+        return pulledBalls[2] - pulledBalls[0] > pulledBalls[1];
+
+    }
+
+    public static int[] pullBalls(boolean[] flag) {
+        Random r = new Random();
+        int[] balls = new int[3];
+        for (int i = 0; i < 3; ++i) {
+            int pulledBall = r.nextInt(1, 100);
+            if (!flag[pulledBall]) {
+                balls[i] = pulledBall;
+                flag[pulledBall] = true;
+            }
+            else if (flag[pulledBall])
+                --i;
+
+
+        }
+        return balls;
+    }
+
+    public static int sumBalls(int[] balls) {
+        int sum = 0;
+        for (int i = 0; i < balls.length; ++i) {
+            sum += balls[i];
+        }
+        return sum;
+    }
+}
